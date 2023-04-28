@@ -35,15 +35,27 @@ export default{
     getOneUserInfo(index) {
         return data[index];
     },
-    updateMyBalance(newBalance, index) {
+    updateMyBalance(newBalance, index, transaction) {
         data[index].balance = newBalance;
+        data[index].transactions.push(transaction);
 
+        //console.log(transaction.whomTo);
+        //console.log(transaction);
         saveToStorage();
     },
 
-    updateTransferBalance(newBalance, index) {
+    updateTransferBalance(newBalance, index, transaction, senderAccountNo) {
         data[index].balance = newBalance;
-        console.log(newBalance);
+        let transferFromDetails = {
+            name: 'received',
+            time: transaction.time,
+            amount: transaction.amount,
+            currentBalance: data[index].balance,
+            from: senderAccountNo,
+            status: "successful"
+        };
+        //console.log(transferFromDetails);
+        data[index].transactions.push(transferFromDetails);
 
         saveToStorage();
     }
