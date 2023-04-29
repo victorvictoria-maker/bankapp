@@ -16,15 +16,15 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/dashboard/:accountno',
-    name: 'dashboard',
-    component: DashBoard
-  },
-  {
     path: '/login',
     name: 'login',
     component: Login
   },
+  {
+    path: '/dashboard/:accountno',
+    name: 'dashboard',
+    component: DashBoard
+  }
 ]
 
 const router = createRouter({

@@ -39,7 +39,6 @@ onMounted(() => {
 });
 
 
-
 function login() {
     let userIndex;
 
@@ -48,9 +47,11 @@ function login() {
     } else {
         const findUsername = userInfo.find(element => element.username === username.value);
         const findUseremail = userInfo.find(element => element.email === username.value);
+
         if(!findUsername) {
             if(!findUseremail) {
                 alert("This user does not exist");
+                return;
             } else {
                 userIndex = userInfo.findIndex(element => element.email === username.value);
             }
@@ -60,7 +61,7 @@ function login() {
 
         //check if the password tallies with the username/email
         if (userInfo[userIndex].password != password.value) {
-            alert('This password does not match');
+            alert('This password is incorrect');
         } else {
             let accountno = userInfo[userIndex].accountno;
             //router.push({path: `dashboard/${accountno}`});

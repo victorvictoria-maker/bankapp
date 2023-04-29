@@ -74,18 +74,35 @@ export default {
     },
     methods: {
         addMoney(a) {
-            this.balance = this.balance + parseInt(this.moneyToAdd);
-            this.addTransaction(a, this.moneyToAdd, this.balance);
+            // let val = typeof(this.moneyToAdd);
+            // if(val != Number || a == "") {
+            //     alert("Error occured, check your input");
+            // } else {
+            //     alert("Go on");
+            // }
+            //console.log(val);
 
-            this.moneyToAdd = '';
+            if(this.moneyToAdd != "") {
+                this.balance = this.balance + parseInt(this.moneyToAdd);
+                this.addTransaction(a, this.moneyToAdd, this.balance);
+
+                this.moneyToAdd = '';
+            } else {
+                alert("Error occured, check your input");
+            }
+            
         },
 
         withdrawMoney(a) {
-            this.balance = this.balance - parseInt(this.moneyToRemove);
-            this.addTransaction(a, this.moneyToRemove, this.balance);
+            if(this.moneyToRemove != "") {
+                this.balance = this.balance - parseInt(this.moneyToRemove);
+                this.addTransaction(a, this.moneyToRemove, this.balance);
 
-
-            this.moneyToRemove = '';
+                this.moneyToRemove = '';
+            } else {
+                alert("Error occured, check your input");
+            }
+            
         },
 
         transferMoney(a) {
@@ -94,22 +111,27 @@ export default {
             let findUser = allUsers.find(element => element.accountno === this.whomToTransfer);
             let receiverIndex = allUsers.findIndex(element => element.accountno === this.whomToTransfer);
 
-            if(!findUser) {
-                alert("This user cannot be found");
-            } else {
-                this.balance = this.balance - parseInt(this.moneyToTransfer);
+            if(this.moneyToTransfer != "" && this.whomToTransfer != "") {
+                if(!findUser) {
+                    alert("This user cannot be found");
+                } else {
+                    this.balance = this.balance - parseInt(this.moneyToTransfer);
                 
-                let users = this.$users.getAllUsers();
-                let receiverBalance = users[receiverIndex].balance;
-                receiverBalance = receiverBalance + parseInt(this.moneyToTransfer);
+                    let users = this.$users.getAllUsers();
+                    let receiverBalance = users[receiverIndex].balance;
+                    receiverBalance = receiverBalance + parseInt(this.moneyToTransfer);
                 
-                this.addTransaction(a, this.moneyToTransfer, this.balance, this.whomToTransfer);
-                this.$users.updateTransferBalance(receiverBalance, receiverIndex, this.transaction, this.thisUser.accountno);
-                //console.log(this.transaction);
+                    this.addTransaction(a, this.moneyToTransfer, this.balance, this.whomToTransfer);
+                    this.$users.updateTransferBalance(receiverBalance, receiverIndex, this.transaction, this.thisUser.accountno);
+                    //console.log(this.transaction);
 
-                this.moneyToTransfer = '';
-                this.whomToTransfer = '';
+                    this.moneyToTransfer = '';
+                    this.whomToTransfer = '';
+                }
+            } else {
+                alert("Error occured, check your input");
             }
+            
         },
 
         checkBal() {
