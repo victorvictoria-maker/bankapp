@@ -1,10 +1,13 @@
 <template>
   <div class="home">
-    <p>Home page</p>
-    <button class="btn btn-primary me-3" @click="toToLogin">Login</button>
-    <button class="btn btn-success" @click="goToSignUp">Sign Up</button>
+    <div class="wrapper">
+      <h2>Ronda</h2>
+      <button class="btn signup" @click="goToSignUp">Open an account</button>
+      <button class="btn  signin" @click="toToLogin">Already and existing user</button>
+    </div>
   </div>
 </template>
+
 
 <script setup>
 import {useRouter} from 'vue-router';
@@ -35,3 +38,40 @@ function goToSignUp() {
   router.push('/signup');
 }
 </script>
+
+
+<style scoped>
+.wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper h2 {
+  margin-bottom: 110px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3em;
+  font-weight: 700;
+  color: orange;
+}
+
+button {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+}
+
+.signup {
+  background-color: orange;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.signin {
+  background-color: rgb(5, 77, 185);
+  color: #ffffff;
+}
+</style>
