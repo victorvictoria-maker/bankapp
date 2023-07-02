@@ -6,6 +6,7 @@ function saveToStorage() {
 
 export default{
     getAllUsers() {
+        // alert("get all users function");
         if(data == null) {
             localStorage.setItem('bankUsers', JSON.stringify([
                 {
@@ -23,6 +24,7 @@ export default{
         return data;
     },
     addUser(thisUser) {
+        // alert("Add user function");
         //console.log(thisUser);
         const found = data.find(element => element.email === thisUser.email);
         if(!found) {
@@ -33,9 +35,11 @@ export default{
         }   
     },
     getOneUserInfo(index) {
+        // alert("Get one user info function");
         return data[index];
     },
     updateMyBalance(newBalance, index, transaction) {
+        // alert("Update my balance funtion");
         data[index].balance = newBalance;
         data[index].transactions.push(transaction);
 
@@ -45,6 +49,7 @@ export default{
     },
 
     updateTransferBalance(newBalance, index, transaction, senderAccountNo) {
+        // alert("Update transfer balanace function");
         data[index].balance = newBalance;
         let transferFromDetails = {
             name: 'received',

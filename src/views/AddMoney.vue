@@ -71,6 +71,7 @@ export default {
             console.log(this.transaction);
         },
         addTransaction(b, c, d) {
+            // alert("Add transaction function is on");
             let currentdate = new Date();   
             let datetime = currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -94,17 +95,24 @@ export default {
                 transaction.currentBalance = d;
 
                 this.transaction = transaction;
+
+                // this.thisUser.balance = newBalance;
+                // this.$users.updateMyBalance(newBalance, this.userIndex, this.transaction);
+                // console.log(this.balance, this.thisUser.balance);
+                this.$users.updateMyBalance(this.balance, this.userIndex, this.transaction);
             } else {
                 alert("This transaction does not exist");
             }
         }
-    },
-    watch: {
-        balance(newBalance) {
-            this.thisUser.balance = newBalance;
-            this.$users.updateMyBalance(newBalance, this.userIndex, this.transaction);
-        }
     }
+    
+    // ,
+    // watch: {
+    //     balance(newBalance) {
+    //         this.thisUser.balance = newBalance;
+    //         this.$users.updateMyBalance(newBalance, this.userIndex, this.transaction);
+    //     }
+    // }
     
 }
 </script>

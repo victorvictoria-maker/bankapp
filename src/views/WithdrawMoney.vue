@@ -94,17 +94,19 @@ export default {
 
 
                 this.transaction = transaction;
+
+                this.$users.updateMyBalance(this.balance, this.userIndex, this.transaction);
             } else {
                 alert("This transaction does not exist");
             }
         }
     },
-    watch: {
-        balance(newBalance) {
-            this.thisUser.balance = newBalance;
-            this.$users.updateMyBalance(newBalance, this.userIndex, this.transaction);
-        }
-    }
+    // watch: {
+    //     balance(newBalance) {
+    //         this.thisUser.balance = newBalance;
+    //         this.$users.updateMyBalance(newBalance, this.userIndex, this.transaction);
+    //     }
+    // }
     
 }
 </script>

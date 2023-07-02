@@ -45,11 +45,10 @@
         </div>
 
         <!-- Trasactions -->
-        <!-- <input type="text" placeholder="Search recent transaction"> -->
         <div class="row search">
                 <div class="col-md-8">
                     <div class="mb-3">
-                        <input type="text" class="form-control" rows="5" id="search" v-model="moneyAdded" placeholder="Search recent transaction">
+                        <input type="text" class="form-control" rows="5" id="search" placeholder="Search recent transaction">
                     </div>
                 </div>
             </div>
@@ -61,43 +60,6 @@
                 <p>Amount by the right</p>
             </div>
         </div> -->
-
-
-        <hr>
-        <!-- <p>{{thisUser.lastName}}, You are welcome.</p> -->
-         <!-- <p>Your account number is {{thisUser.accountno}}.</p>
-         <p>Your balance is N{{thisUser.balance}}</p>
-
-         <div class="wrapper">
-            <div class="section">
-                <label for="addMoney">Add money</label>
-                <input type="text" name="addMoney" id="addMoney" v-model="moneyToAdd">
-                <button class="btn btn-primary ms-2 me-2 mb-2" @click="addMoney('add')">Add Money</button>
-            </div>
-
-            <div class="section">
-                <label for="withdrawMoney">Withdraw money</label>
-                <input type="text" name="withdrawMoney" id="withdrawMoney" v-model="moneyToRemove">
-                <button class="btn btn-danger mb-2" @click="withdrawMoney('withdraw')">Withdraw</button>
-            </div>
-            
-            <div class="section">
-                <label for="transferMoney">Transfer money</label>
-                <input type="text" name="transferMoney" id="transferMoney" v-model="moneyToTransfer">
-                <input type="text" name="transferAccount" id="transferAccount" v-model="whomToTransfer">
-                <button class="btn btn-success me-2 mb-2" @click="transferMoney('transfer')">Transfer</button>
-            </div>
-            
-            <div class="section">
-                <label for="checkBalance">Check balance</label>
-                <button class="btn btn-secondary me-2 mb-2" @click="checkBal">Balance</button>
-                <span v-if="checkBalance">Your balance is N{{thisUser.balance}}</span>
-            </div>
-            
-            <button class="btn btn-primary me-2 mb-2">Transaction History</button>
-         </div>
-
-        <button @click="$router.go(-1)">Log Out</button> -->
     </div>
 </template>
 
