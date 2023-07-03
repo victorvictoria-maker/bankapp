@@ -48,7 +48,7 @@ export default{
         saveToStorage();
     },
 
-    updateTransferBalance(newBalance, index, transaction, senderAccountNo) {
+    updateTransferBalance(newBalance, index, transaction, senderAccountNo, details) {
         // alert("Update transfer balanace function");
         data[index].balance = newBalance;
         let transferFromDetails = {
@@ -57,6 +57,7 @@ export default{
             amount: transaction.amount,
             currentBalance: data[index].balance,
             from: senderAccountNo,
+            details,
             status: "successful"
         };
         //console.log(transferFromDetails);

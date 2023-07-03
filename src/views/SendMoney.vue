@@ -31,11 +31,18 @@ export default {
         let router = useRouter();
         const route = useRoute();
         let allUsers = this.$users.getAllUsers();
+        this.allUsers = allUsers;
         let userIndex = allUsers.findIndex(element => element.accountno === route.params.accountno);
         this.thisUser = this.$users.getOneUserInfo(userIndex);
         this.balance = this.thisUser.balance;
         this.userIndex = userIndex;
         this.router = router;
+
+        // console.log(this.thisUser);
+        let senderName = this.thisUser.lastName + ' ' + this.thisUser.firstName;
+        this.senderName = senderName;
+        // console.log(this.senderName);
+
         // console.log(allUsers);
         // console.log('end');
         // console.log(userIndex);
@@ -51,6 +58,8 @@ export default {
             router: '',
             amountToTransfer: '',
             whomToTransfer: '',
+            senderName: '',
+            receiverDetails: ''
         }
     },
 
@@ -75,7 +84,7 @@ export default {
                     receiverBalance = receiverBalance + parseInt(this.amountToTransfer);
                 
                     this.addTransaction(a, this.amountToTransfer, this.balance, this.whomToTransfer);
-                    this.$users.updateTransferBalance(receiverBalance, receiverIndex, this.transaction, this.thisUser.accountno);
+                    this.$users.updateTransferBalance(receiverBalance, receiverIndex, this.transaction, this.thisUser.accountno, this.receiverDetails);
 
                     alert("Money sent successfully!");
 
@@ -107,14 +116,24 @@ export default {
                     amount: '',
                     currentBalance: '',
                     whomTo: '',
-                    status: "successful"
+                    details: '',
+                    status: "successful",
                 };
 
+
+                let receiverIndex = this.allUsers.findIndex(element => element.accountno === e);
+                let receiverDetails= this.$users.getOneUserInfo(receiverIndex);
+                let receiverName = receiverDetails.lastName + ' ' + receiverDetails.firstName;
+       
+                
                 transfarTransaction.name = b;
                 transfarTransaction.time = datetime;
                 transfarTransaction.amount = c;
                 transfarTransaction.currentBalance = d;
                 transfarTransaction.whomTo = e;
+                transfarTransaction.details = 'You sent money to ' + receiverName;
+                
+                this.receiverDetails = 'Received money from ' + this.senderName;
 
                 this.transaction = transfarTransaction;
 

@@ -68,7 +68,7 @@ export default {
                 alert("You need to add an amount for a successful transaction");
             }
 
-            console.log(this.transaction);
+            // console.log(this.transaction);
         },
         addTransaction(b, c, d) {
             // alert("Add transaction function is on");
@@ -85,6 +85,7 @@ export default {
                 time: '',
                 amount: '',
                 currentBalance: '',
+                details: 'You added money',
                 status: "successful"
             };
 

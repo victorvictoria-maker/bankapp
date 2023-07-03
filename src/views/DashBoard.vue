@@ -51,7 +51,24 @@
                         <input type="text" class="form-control" rows="5" id="search" placeholder="Search recent transaction">
                     </div>
                 </div>
+        </div>
+
+        <div class="transactionwrapper">
+            <div v-for="(transaction, index) in transactionToShow" :key="index" class="transaction">
+            <!-- {{ transaction }} -->
+                <p>{{transaction.time}}</p>
+                <div class="down">
+                    <p class="details">{{transaction.details}}</p>
+                    <p :class="[transaction.name == 'withdraw' ? 'red' : 'green']">{{transaction.amount}}</p>
+                </div>
+                <hr>
             </div>
+        </div>
+
+        <button class="all" @click="$router.push({name: 'transactions', params: {accountno: `${thisUser.accountno}`}});">See all transactions</button>
+    </div>
+
+
 <!-- 
         <div>
             <div>
@@ -60,7 +77,6 @@
                 <p>Amount by the right</p>
             </div>
         </div> -->
-    </div>
 </template>
 
 
@@ -77,15 +93,35 @@ export default {
         this.thisUser = this.$users.getOneUserInfo(userIndex);
         this.balance = this.thisUser.balance;
         this.userIndex = userIndex;
+
+        this.transactions = this.thisUser.transactions; 
+
+
+        this.transactionToShow = this.transactions.slice(-5).reverse();
+        // console.log(this.transactions);
+        // console.log(this.transactions);
     },
     data() {
         return {
             allUsers: [],
             thisUser: '',
             balance: 0,
-            userIndex: ''
+            userIndex: '',
+            transactions: [],
+            transactionToShow: []
         }
-    }
+    },
+    // computed: {
+    //     addSymbol() {
+    //         let symbol = '+';
+    //         let transactionName = transaction.name;
+    //         if(transactionName == 'withdraw') {
+    //             symbol = '-';
+    //         } 
+
+    //         return symbol;
+    //     }
+    // }
 }
 </script>
 
@@ -215,6 +251,51 @@ export default {
 }
 
 .search input {
+    border-radius: 20px;
+}
+
+.transactionwrapper {
+    /* border: 1px solid red; */
+    padding: 10px;
+}
+
+.transaction {
+    /* box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75); */
+    /* border-radius: 20px; */
+    padding: 15px 0 0;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+
+.transaction p {
+    line-height: 5px;
+}
+
+.transaction .down {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+
+hr {
+    margin-top: -6px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.all {
+    background-color: rgb(5, 77, 185);
+    color: #ffffff;
+    width: 85%;
+    border: 1px solid rgb(5, 77, 185);
+    height: 40px;
     border-radius: 20px;
 }
 </style>

@@ -83,6 +83,7 @@ export default {
                 time: '',
                 amount: '',
                 currentBalance: '',
+                details: 'You withdrew money',
                 status: "successful"
             };
 
