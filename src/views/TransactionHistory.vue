@@ -8,12 +8,15 @@
             </div>
             <div class="text">
                 <p class="total">Total spending</p>
-                <p class="amount1">N1234567</p>
+                <p class="amount1">	&#8358;XXXXX</p>
                 <p class="total">Total Money Received</p>
-                <p class="amount2">N15255637376</p>
+                <p class="amount2">	&#8358;XXXXXXX</p>
             </div>
         </div>
-        <div class="transactionwrapper">
+        <div v-if="this.transactions.length <= 0" class="notransaction">
+            <p>You have no transactions</p>
+        </div>
+        <div v-else class="transactionwrapper">
             <div v-for="(transaction, index) in transactionToShow" :key="index" class="transaction">
             <!-- {{ transaction }} -->
                 <p>{{transaction.time}}</p>
@@ -45,8 +48,6 @@ export default {
 
 
         this.transactionToShow = this.transactions.reverse();
-        // console.log(this.transactions);
-        // console.log(this.transactions);
     },
     data() {
         return {
@@ -61,7 +62,6 @@ export default {
 
 <style scoped>
 .header {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -98,7 +98,7 @@ export default {
 }
 
 .header .total {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .header .amount1 {
@@ -109,22 +109,29 @@ export default {
 .header .amount2 {
     font-weight: 800;
     font-size: 1.4em;
-    padding-right: 40px;
+    padding-right: 60px;
     letter-spacing: -1px;
+    color: rgb(5, 77, 185);;
 }
 .wrapper {
     padding: 40px 20px;
 }
+
+.notransaction {
+    font-weight: 600;
+    font-size: 1.8em;
+    text-align: center;
+    position: relative;
+    top: 50px;
+    text-transform: uppercase;
+}
 .transactionwrapper {
-    /* border: 1px solid red; */
     padding: 10px;
     height: 600px;
     overflow: scroll;
 }
 
 .transaction {
-    /* box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75); */
-    /* border-radius: 20px; */
     padding: 15px 0 0;
     font-size: 0.8em;
     margin-bottom: 10px;

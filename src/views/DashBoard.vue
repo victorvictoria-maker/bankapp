@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <!-- the header of the dahsboard -->
+        <!-- the header of the dashboard -->
         <div class="header position-relative">
             <img src="../assets/profilepicture.jpg" alt="profile picture" class="me-2">
             <p>Hello! <span>{{thisUser.lastName}}</span></p>
@@ -13,7 +13,7 @@
                 <p class="p1">Available balance</p>
                 <p class="p2">Savings account</p>
                 <p class="p3">{{thisUser.accountno}}</p>
-                <p class="p4">N{{thisUser.balance}}</p>
+                <p class="p4">	&#8358;{{thisUser.balance}}</p>
             </div>
             <div>
                 <p class="p5">{ Acc 1 of 1 }</p>
@@ -55,7 +55,6 @@
 
         <div class="transactionwrapper">
             <div v-for="(transaction, index) in transactionToShow" :key="index" class="transaction">
-            <!-- {{ transaction }} -->
                 <p>{{transaction.time}}</p>
                 <div class="down">
                     <p class="details">{{transaction.details}}</p>
@@ -68,15 +67,6 @@
         <button class="all" @click="$router.push({name: 'transactions', params: {accountno: `${thisUser.accountno}`}});">See all transactions</button>
     </div>
 
-
-<!-- 
-        <div>
-            <div>
-                <p>Day and time</p>
-                <p>Transaction type</p>
-                <p>Amount by the right</p>
-            </div>
-        </div> -->
 </template>
 
 
@@ -98,8 +88,6 @@ export default {
 
 
         this.transactionToShow = this.transactions.slice(-5).reverse();
-        // console.log(this.transactions);
-        // console.log(this.transactions);
     },
     data() {
         return {
@@ -111,33 +99,18 @@ export default {
             transactionToShow: []
         }
     },
-    // computed: {
-    //     addSymbol() {
-    //         let symbol = '+';
-    //         let transactionName = transaction.name;
-    //         if(transactionName == 'withdraw') {
-    //             symbol = '-';
-    //         } 
-
-    //         return symbol;
-    //     }
-    // }
 }
 </script>
 
 
 <style scoped>
 .wrapper {
-    /* border: 2px solid red; */
     margin: 20px;
     padding: 15px;
-    /* height: 100px; */
 }
 
 .header {
-   /* border: 3px solid green;  */
    display: flex;
-   /* margin: auto; */
    justify-items: center;
    align-items: center;
 }
@@ -146,7 +119,6 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    /* margin-right: 5px; */
 }
 
 .header p {
@@ -177,7 +149,6 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* text-align: center; */
 }
 
 .card .p1 {
@@ -205,7 +176,6 @@ export default {
     color: #ffffff;
     font-weight: 700;
     font-size: 2.3em;
-    /* letter-spacing: -1px; */
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -228,7 +198,6 @@ export default {
 }
 
 .actions div {
-    /* background-color: blue; */
     width: 23%;
     padding-top: 15px;
     text-align: center;
@@ -238,13 +207,6 @@ export default {
     font-size: 0.8em;
 }
 
-.actions img {
-    /* align-items: center; */
-    /* text-align: center; */
-    /* margin: 0 30%; */
-    /* background: red; */
-    
-}
 
 .search {
     margin-top: 15px;
@@ -255,13 +217,10 @@ export default {
 }
 
 .transactionwrapper {
-    /* border: 1px solid red; */
     padding: 10px;
 }
 
 .transaction {
-    /* box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75); */
-    /* border-radius: 20px; */
     padding: 15px 0 0;
     font-size: 0.8em;
     margin-bottom: 10px;

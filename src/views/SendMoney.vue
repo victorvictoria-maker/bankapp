@@ -41,11 +41,6 @@ export default {
         // console.log(this.thisUser);
         let senderName = this.thisUser.lastName + ' ' + this.thisUser.firstName;
         this.senderName = senderName;
-        // console.log(this.senderName);
-
-        // console.log(allUsers);
-        // console.log('end');
-        // console.log(userIndex);
     },
 
     data() {
@@ -64,9 +59,6 @@ export default {
     },
 
     methods: {
-        // sendMoney(a) {
-        //     console.log(a, this.amountToTransfer, this.whomToTransfer);
-        // }
         sendMoney(a) {
             let allUsers = this.$users.getAllUsers();
             

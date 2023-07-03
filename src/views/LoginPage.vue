@@ -66,7 +66,6 @@ function login() {
             alert('This password is incorrect');
         } else {
             let accountno = userInfo[userIndex].accountno;
-            //router.push({path: `dashboard/${accountno}`});
             router.push({name: 'dashboard', params: {accountno: `${accountno}`}});
         }
     }

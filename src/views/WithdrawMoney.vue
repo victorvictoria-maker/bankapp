@@ -34,9 +34,6 @@ export default {
         this.balance = this.thisUser.balance;
         this.userIndex = userIndex;
         this.router = router;
-        // console.log(allUsers);
-        // console.log('end');
-        // console.log(userIndex);
     },
     data() {
         return {
@@ -51,19 +48,20 @@ export default {
     },
     methods: {
         withdrawMoney(a) {
-            // console.log(this.moneyAdded);
-            // console.log(this.userIndex, a);
-
             if(this.moneyWithdrawn != "") {
-                this.balance = this.balance - parseInt(this.moneyWithdrawn);
-                this.addTransaction(a, this.moneyWithdrawn, this.balance);
+                if(this.balance < this.moneyWithdrawn) {
+                    alert("Insufficient balance");
+                    return;
+                } else {
+                    this.balance = this.balance - parseInt(this.moneyWithdrawn);
+                    this.addTransaction(a, this.moneyWithdrawn, this.balance);
 
-                alert("Money withdrawn successfully!");
+                    alert("Money withdrawn successfully!");
 
-                this.moneyWithdrawn = '';
-                let accountno = this.thisUser.accountno;
-                this.router.push({name: 'dashboard', params: {accountno: `${accountno}`}});
-                
+                    this.moneyWithdrawn = '';
+                    let accountno = this.thisUser.accountno;
+                    this.router.push({name: 'dashboard', params: {accountno: `${accountno}`}});
+                }
             } else {
                 alert("Error occured, check your input");
             }
